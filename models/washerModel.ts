@@ -11,19 +11,46 @@ const washerSchema = new Schema({
     required: true,
   },
   coordinate: {
-    type: String,
+    type: [String],
     required: false,
   },
   service: {
-    type: String,
+    type: [String],
     required: true,
   }, 
   userRef: {
-    type: String,
+    type: [String],
     required: true, 
   },
   session: {
-    type: String
+    type: [{
+      sessionDate: String,
+      startingTime: String,
+      endTime: String,
+    }]
+  },
+  contact: {
+    type: String,
+  },
+  review: {
+    type: [Number],
+  },
+  workingHours: {
+    type: [String],
+  },
+  imagePaths: {
+    type: [String],
+  },
+  workingDays: {
+    type: {
+      monday: Boolean,
+      tuesday: Boolean,
+      wednesday: Boolean,
+      thursday: Boolean,
+      friday: Boolean,
+      saturday: Boolean,
+      sunday: Boolean,
+    }
   }
 });
 
