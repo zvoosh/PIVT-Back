@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
   },
 });
 
-//UPLOAD IAMGE
+//UPLOAD IMAGE
 
 var fileFilter = (req: any, file: any, cb: any) => {
   //reject a file
@@ -50,13 +50,14 @@ router.get("/:id", (req: any, res: any) => {
 });
 // UPLAOAD IMAGE
 router.post("/",(req: any, res: any) => {
-  console.log('dusan', req.body);
+  console.log('dusan', upload.single("productImage"), req.body);
   const client = new Washer({
     title: req.body.title,
     adress: req.body.adress,
     coordinate: req.body.coordinate,
     service: req.body.service,
     userRef: req.body.userRef,
+    imagePaths: date_now + req.file.originalname,
     session: req.body.session,
     contact: req.body.contact,
     imagePath: req.body.imagePath,
@@ -78,9 +79,10 @@ router.put("/:id", async (req: any, res: any) => {
       result.title = req.body.title;
       result.adress = req.body.adress;
       result.coordinate = req.body.coordinate;
-      result.service = req.body.service;//fix
-      result.userRef = req.body.userRef;//fix
-      result.session = req.body.session;//fix
+      result.service = req.body.service;//fix arr
+      result.userRef = req.body.userRef;//fix arr 
+      result.session = req.body.session;//fix arr
+      result.imagePaths = req.body.imagePaths ? [...req.body.imagePaths, req.file.originalname] : req.file.originalname // arr
       result.contact = req.body.contact;
       result.review = req.body.review;
       result.imagePath = req.body.imagePath,
